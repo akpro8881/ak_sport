@@ -99,3 +99,20 @@ font-size:18px;
 color:#d6d6d6;
 
 }
+#searchBox{
+  display:block;
+  width:95%;
+  margin:15px auto 0;
+  padding:14px 18px;
+  border-radius:14px;
+  border:none;
+  outline:none;
+  background:#262b31;
+  color:white;
+  font-family:'Cairo',sans-serif;
+  font-size:18px;
+}
+
+#searchBox::placeholder{
+  color:#8a8f96;
+}
