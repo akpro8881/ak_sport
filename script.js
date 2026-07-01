@@ -1,35 +1,48 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+<!DOCTYPE html>
+<html lang="ar">
 
-import {
-    getDatabase,
-    ref,
-    onValue
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+<head>
 
-const firebaseConfig = {
-    apiKey: "ضع Api Key هنا",
-    authDomain: "اسم المشروع.firebaseapp.com",
-    databaseURL: "https://اسم-المشروع-default-rtdb.firebaseio.com",
-    projectId: "اسم المشروع",
-    storageBucket: "اسم المشروع.appspot.com",
-    messagingSenderId: "xxxxxxxx",
-    appId: "xxxxxxxx"
-};
+<meta charset="UTF-8">
 
-// تهيئة Firebase
-const app = initializeApp(firebaseConfig);
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// الاتصال بقاعدة البيانات
-const db = getDatabase(app);
+<title>AK Sport TV</title>
 
-// مرجع البيانات
-const channelsRef = ref(db, "ak_tv_2");
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-// قراءة البيانات
-onValue(channelsRef, (snapshot) => {
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    const data = snapshot.val();
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
-    console.log(data);
+<link rel="stylesheet" href="style.css">
 
-});
+</head>
+
+<body>
+
+<div id="list"></div>
+
+<template id="channelTemplate">
+
+    <div class="item">
+
+        <img class="channel-image">
+
+        <div class="channel-info">
+
+            <h3 class="channel-name"></h3>
+
+            <p class="channel-status">بث مباشر الآن</p>
+
+        </div>
+
+    </div>
+
+</template>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>

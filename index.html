@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Football TV</title>
+
+    <title>AK Sport</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-    <h1>Football TV</h1>
+    <!-- القائمة التي ستحتوي على جميع القنوات -->
+    <div id="list"></div>
 
-    <div id="channels"></div>
+    <!-- قالب العنصر (Custom View) -->
+    <template id="channelTemplate">
 
-    <script src="script.js"></script>
+        <div class="item">
+
+            <img class="channel-image">
+
+            <h3 class="channel-name"></h3>
+
+            <p class="channel-category"></p>
+
+            <button class="play-btn">
+                تشغيل
+            </button>
+
+        </div>
+
+    </template>
+
+    <script type="module" src="script.js"></script>
 
 </body>
+
 </html>
