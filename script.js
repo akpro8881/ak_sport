@@ -1,48 +1,83 @@
-<!DOCTYPE html>
-<html lang="ar">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
-<head>
+import {
 
-<meta charset="UTF-8">
+getDatabase,
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ref,
 
-<title>AK Sport TV</title>
+onValue
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+const firebaseConfig={
 
-</head>
+apiKey:"AIzaSyBLFF8VDiDr9GqijxtTzM7vS-SZR3qXGg8",
 
-<body>
+authDomain:"ak-sport-a985e.firebaseapp.com",
 
-<div id="list"></div>
+databaseURL:"https://ak-sport-a985e-default-rtdb.firebaseio.com",
 
-<template id="channelTemplate">
+projectId:"ak-sport-a985e",
 
-    <div class="item">
+storageBucket:"ak-sport-a985e.appspot.com",
 
-        <img class="channel-image">
+messagingSenderId:"922662521404",
 
-        <div class="channel-info">
+appId:"1:922662521404:web:bfe68c03e01271a8ddd139"
 
-            <h3 class="channel-name"></h3>
+};
 
-            <p class="channel-status">بث مباشر الآن</p>
 
-        </div>
 
-    </div>
+const app=initializeApp(firebaseConfig);
 
-</template>
+const db=getDatabase(app);
 
-<script type="module" src="script.js"></script>
 
-</body>
 
-</html>
+const list=document.getElementById("list");
+
+const template=document.getElementById("channelTemplate");
+
+
+
+function loadChannels(){
+
+const channelsRef=ref(db,"ak_tv_2");
+
+onValue(channelsRef,(snapshot)=>{
+
+list.innerHTML="";
+
+const data=snapshot.val();
+
+if(!data) return;
+
+Object.entries(data).forEach(([key,channel])=>{
+
+const clone=template.content.cloneNode(true);
+
+clone.querySelector(".channel-image").src=channel.img;
+
+clone.querySelector(".channel-name").textContent=channel.name;
+
+clone.querySelector(".item").onclick=function(){
+
+window.open(channel.url,"_blank");
+
+};
+
+list.appendChild(clone);
+
+});
+
+});
+
+}
+
+
+
+loadChannels();
